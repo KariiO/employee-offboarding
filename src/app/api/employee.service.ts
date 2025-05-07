@@ -1,6 +1,6 @@
 import {inject, Injectable, ResourceRef, Signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {delay, Observable, of} from 'rxjs';
 import {Employee, OffboardPayload} from '../models';
 import {rxResource} from '@angular/core/rxjs-interop';
 
@@ -20,7 +20,8 @@ export class EquipmentService {
     })
   }
 
-  offboard(id: string, payload: OffboardPayload): Observable<void> {
-    return this._httpClient.get<void>(`${this.BASE_URL}/employees/${id}/offboard`);
+  offboard(id: string | undefined, payload: OffboardPayload): Observable<unknown> {
+    return of(null).pipe(delay(1000))
+    // return this._httpClient.post<void>(`${this.BASE_URL}/employees/${id}/offboard`, payload);
   }
 }

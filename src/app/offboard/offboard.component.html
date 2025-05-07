@@ -1,1 +1,14 @@
-<p>offboard works!</p>
+<dialog open>
+  <form [formGroup]="form" (ngSubmit)="onConfirm()">
+    @let addressControls = form.controls.address.controls;
+    <input type="text" placeholder="Receiver" [formControl]="addressControls.receiver">
+    <input type="text" placeholder="Email" [formControl]="form.controls.email">
+    <input type="text" placeholder="Phone" [formControl]="form.controls.phone">
+    <input type="text" placeholder="Street line" [formControl]="addressControls.streetLine1">
+    <input type="text" placeholder="City" [formControl]="addressControls.city">
+    <input type="text" placeholder="Postal code" [formControl]="addressControls.postalCode">
+    <input type="text" placeholder="Country" [formControl]="addressControls.country">
+    <input type="text" placeholder="Notes" [formControl]="form.controls.notes">
+    <input type="submit" value="CONFIRM">
+  </form>
+</dialog>
