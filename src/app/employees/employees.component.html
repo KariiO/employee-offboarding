@@ -1,24 +1,36 @@
-<table>
-  <thead>
-  <tr>
-    <th>Full Name</th>
-    <th>Email</th>
-    <th>Department</th>
-    <th>Equipment</th>
-    <th>Status</th>
-    <th>Details</th>
-  </tr>
-  </thead>
-  <tbody>
-    @for (employee of employeesResource.value(); track employee.id) {
-      <tr>
-        <td>{{ employee.name }}</td>
-        <td>{{ employee.email }}</td>
-        <td>{{ employee.department }}</td>
-        <td>{{ employee.equipments | friendlyEquipments }}</td>
-        <td>{{ employee.status | titlecase }}</td>
-        <td><a [routerLink]="[employee.id]">Details</a></td>
-      </tr>
-    }
-  </tbody>
-</table>
+@let isLoading = employeesResource.isLoading();
+@let error = employeesResource.error();
+
+@if (isLoading) {
+  loading
+}
+@if (error) {
+  error
+}
+@if (employees()) {
+  <input type="text" [(ngModel)]="searchTerm">
+  <table>
+    <thead>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Department</th>
+      <th>Equipment</th>
+      <th>Status</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (employee of employees(); track employee.id) {
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.department }}</td>
+          <td>{{ employee.equipments | friendlyEquipments }}</td>
+          <td>{{ employee.status | titlecase }}</td>
+          <td><a [routerLink]="[employee.id]">Details</a></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
