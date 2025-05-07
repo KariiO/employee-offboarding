@@ -1,7 +1,8 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, ResourceRef, Signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Employee, OffboardPayload} from '../models';
+import {rxResource} from '@angular/core/rxjs-interop';
 
 @Injectable({providedIn: 'root'})
 export class EquipmentService {
@@ -12,8 +13,11 @@ export class EquipmentService {
     return this._httpClient.get<Employee[]>(`${this.BASE_URL}/employees`);
   }
 
-  get(id: string): Observable<Employee> {
-    return this._httpClient.get<Employee>(`${this.BASE_URL}/employees/${id}`);
+  get(id: Signal<string | undefined>): ResourceRef<Employee | undefined> {
+    return rxResource({
+      request: () => id(),
+      loader: ({request}) => this._httpClient.get<Employee>(`${this.BASE_URL}/employees/${request}`)
+    })
   }
 
   offboard(id: string, payload: OffboardPayload): Observable<void> {
