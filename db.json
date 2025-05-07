@@ -16,6 +16,23 @@
           "name": "Magic Mouse"
         }
       ]
+    },
+    {
+      "id": "vvv1323x",
+      "name": "Mary Doe",
+      "department": "Human Resources",
+      "status": "OUTBOARDED",
+      "email": "some.email@wp.pl",
+      "equipments": [
+        {
+          "id": "aaa123456",
+          "name": "Macbook air"
+        },
+        {
+          "id": "aaa1234567",
+          "name": "Magic Mouse"
+        }
+      ]
     }
   ]
 }
