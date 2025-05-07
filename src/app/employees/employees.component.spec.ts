@@ -1,8 +1,8 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {EmployeesComponent} from './employees.component';
-import {EquipmentService} from '../api/employee.service';
-import {signal} from '@angular/core';
+import { EmployeesComponent } from './employees.component';
+import { EquipmentService } from '../api/employee.service';
+import { signal } from '@angular/core';
 
 describe('EmployeesComponent', () => {
   let component: EmployeesComponent;
@@ -15,18 +15,15 @@ describe('EmployeesComponent', () => {
         {
           provide: EquipmentService,
           useValue: {
-            getAll: () => (
-              {
-                value: signal<null>(null),
-                error: signal<null>(null),
-                isLoading: signal<null>(null),
-              }
-            )
-          }
-        }
-      ]
-    })
-      .compileComponents();
+            getAll: () => ({
+              value: signal<null>(null),
+              error: signal<null>(null),
+              isLoading: signal<null>(null),
+            }),
+          },
+        },
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EmployeesComponent);
     component = fixture.componentInstance;

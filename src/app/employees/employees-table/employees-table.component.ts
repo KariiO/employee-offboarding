@@ -1,7 +1,7 @@
-import {Component, inject, input} from '@angular/core';
-import {FriendlyEquipmentsPipe} from '../../pipes/friendly-equipments.pipe';
-import {TitleCasePipe} from '@angular/common';
-import {Employee} from '../../models';
+import { Component, inject, input } from '@angular/core';
+import { FriendlyEquipmentsPipe } from '../../pipes/friendly-equipments.pipe';
+import { TitleCasePipe } from '@angular/common';
+import { Employee } from '../../models';
 import {
   MatCell,
   MatCellDef,
@@ -9,13 +9,14 @@ import {
   MatHeaderCell,
   MatHeaderCellDef,
   MatHeaderRow,
-  MatHeaderRowDef, MatNoDataRow,
+  MatHeaderRowDef,
+  MatNoDataRow,
   MatRow,
   MatRowDef,
-  MatTable
+  MatTable,
 } from '@angular/material/table';
-import {MatIcon} from '@angular/material/icon';
-import {Router} from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-table',
@@ -33,18 +34,18 @@ import {Router} from '@angular/router';
     MatHeaderRowDef,
     MatRowDef,
     MatIcon,
-    MatNoDataRow
+    MatNoDataRow,
   ],
   templateUrl: './employees-table.component.html',
-  styleUrl: './employees-table.component.css'
+  styleUrl: './employees-table.component.css',
 })
 export class EmployeesTableComponent {
-  private _router = inject(Router)
+  private _router = inject(Router);
 
   employees = input<Employee[]>([]);
   displayedColumns: string[] = ['name', 'email', 'department', 'equipments', 'status', 'action'];
 
   onEmployeeClick(row: Employee): void {
-    void this._router.navigate(['employees', row.id])
+    void this._router.navigate(['employees', row.id]);
   }
 }

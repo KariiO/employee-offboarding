@@ -1,5 +1,5 @@
-import {Status} from './status.enum';
-import {Equipment} from './equipment.interface';
+import { Status } from './status.enum';
+import { Equipment } from './equipment.interface';
 
 export interface Employee {
   id: string;
@@ -7,5 +7,5 @@ export interface Employee {
   department: string;
   status: Status;
   email: string;
-  equipments: Equipment[]
+  equipments: Equipment[];
 }

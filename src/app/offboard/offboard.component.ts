@@ -1,19 +1,12 @@
-import {Component, DestroyRef, effect, inject, input, TemplateRef, viewChild} from '@angular/core';
-import {EquipmentService} from '../api/employee.service';
-import {OffboardFormFactory, OffboardFormGroup} from './offboard-form-factory';
-import {FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Router} from '@angular/router';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle
-} from '@angular/material/dialog';
-import {MatButton} from '@angular/material/button';
-import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import { Component, DestroyRef, effect, inject, input, TemplateRef, viewChild } from '@angular/core';
+import { EquipmentService } from '../api/employee.service';
+import { OffboardFormFactory, OffboardFormGroup } from './offboard-form-factory';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
+import { MatError, MatFormField, MatInput, MatLabel } from '@angular/material/input';
 
 @Component({
   selector: 'app-offboard',
@@ -28,10 +21,10 @@ import {MatError, MatFormField, MatInput, MatLabel} from '@angular/material/inpu
     MatInput,
     MatLabel,
     MatFormField,
-    MatError
+    MatError,
   ],
   templateUrl: './offboard.component.html',
-  styleUrl: './offboard.component.css'
+  styleUrl: './offboard.component.css',
 })
 export class OffboardComponent {
   offboardDialogTemplate = viewChild<TemplateRef<unknown>>('offboardDialog');
@@ -53,8 +46,8 @@ export class OffboardComponent {
       if (offboardDialogTemplate) {
         this._dialogRef = this._dialog.open(offboardDialogTemplate, {
           hasBackdrop: false,
-          width: '640px'
-        })
+          width: '640px',
+        });
       }
     });
   }
@@ -62,15 +55,16 @@ export class OffboardComponent {
   onConfirm(): void {
     const payload = this.form.getRawValue();
 
-    this._equipmentService.offboard(this.id(), payload)
+    this._equipmentService
+      .offboard(this.id(), payload)
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe({
         next: () => {
           this._dialogRef.close();
-          void this._router.navigateByUrl('/employees')
+          void this._router.navigateByUrl('/employees');
         },
         error: () => alert('Unable to perform offboard, try again later!'),
-      })
+      });
   }
 
   onCancel(): void {

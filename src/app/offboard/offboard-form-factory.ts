@@ -1,4 +1,4 @@
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface OffboardFormGroup {
   email: FormControl<string>;
@@ -18,17 +18,17 @@ interface AddressFormGroup {
 export class OffboardFormFactory {
   static create(): FormGroup {
     const form = new FormGroup({
-      email: new FormControl('', {nonNullable: true, validators: [Validators.required, Validators.email]}),
-      phone: new FormControl('', {nonNullable: true, validators: Validators.required}),
-      notes: new FormControl('', {nonNullable: true, validators: Validators.required}),
+      email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
+      phone: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      notes: new FormControl('', { nonNullable: true, validators: Validators.required }),
       address: new FormGroup({
-        receiver: new FormControl('', {nonNullable: true, validators: Validators.required}),
-        streetLine1: new FormControl('', {nonNullable: true, validators: Validators.required}),
-        postalCode: new FormControl('', {nonNullable: true, validators: Validators.required}),
-        country: new FormControl('', {nonNullable: true, validators: Validators.required}),
-        city: new FormControl('', {nonNullable: true, validators: Validators.required}),
-      })
-    })
+        receiver: new FormControl('', { nonNullable: true, validators: Validators.required }),
+        streetLine1: new FormControl('', { nonNullable: true, validators: Validators.required }),
+        postalCode: new FormControl('', { nonNullable: true, validators: Validators.required }),
+        country: new FormControl('', { nonNullable: true, validators: Validators.required }),
+        city: new FormControl('', { nonNullable: true, validators: Validators.required }),
+      }),
+    });
 
     // // TODO: Debug purposes - remove later
     // form.setValue({
