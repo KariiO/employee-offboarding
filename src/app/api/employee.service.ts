@@ -22,7 +22,7 @@ export class EquipmentService {
   get(id: Signal<string | undefined>): ResourceRef<Employee | undefined> {
     return rxResource({
       request: () => id(),
-      loader: ({request}) => this._httpClient.get<Employee>(`${this.BASE_URL}/employees/${request}`)
+      loader: ({request}) => this._httpClient.get<Employee>(`${this.BASE_URL}/employees/${request}`).pipe(delay(1000))
     })
   }
 

@@ -1,23 +1,45 @@
-<a routerLink="/employees">Back</a>
 @let employee = employeeResource.value();
 @let isLoading = employeeResource.isLoading();
 @let error = employeeResource.error();
 
 @if (isLoading) {
-  loading
+  <mat-spinner/>
 }
-@if (error) {
-  error
-}
-@if (employee) {
-  <div>Full Name: {{ employee.name }}</div>
-  <div>Email: {{ employee.email }}</div>
-  <div>Department: {{ employee.department }}</div>
 
-  <hr>
-  <h2>Equipment</h2>
-  @for (equipment of employee.equipments; track equipment.id) {
-    <div>{{ equipment.name }}</div>
-  }
-  <a routerLink="offboard">Offboard</a>
+@if (error) {
+  Snap! We were unable to fetch employee...please try again later.
+}
+
+@if (employee) {
+  <a mat-button routerLink="/employees">
+    <mat-icon>chevron_left</mat-icon>
+    Back
+  </a>
+
+  <header>
+    <h1>{{ employee.name }}</h1>
+    <a mat-flat-button routerLink="offboard">Offboard</a>
+  </header>
+
+  <section>
+    <span class="section-title">Employee Details</span>
+    <hr>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem"><i>Full Name:</i> {{ employee.name }}</mat-list-item>
+      <mat-list-item role="listitem"><i>Email:</i> {{ employee.email }}</mat-list-item>
+      <mat-list-item role="listitem"><i>Department:</i> {{ employee.department }}</mat-list-item>
+    </mat-list>
+  </section>
+
+  <section>
+    <span class="section-title">Equipment</span>
+    <hr>
+
+    <mat-list role="list">
+      @for (equipment of employee.equipments; track equipment.id) {
+        <mat-list-item role="listitem">{{ equipment.name }}</mat-list-item>
+      }
+    </mat-list>
+  </section>
 }
