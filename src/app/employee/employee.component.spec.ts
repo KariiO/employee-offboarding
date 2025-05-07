@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EmployeeComponent } from './employee.component';
+import {EmployeeComponent} from './employee.component';
+import {EquipmentService} from '../api/employee.service';
+import {signal} from '@angular/core';
 
 describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
@@ -8,9 +10,23 @@ describe('EmployeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmployeeComponent]
+      imports: [EmployeeComponent],
+      providers: [
+        {
+          provide: EquipmentService,
+          useValue: {
+            get: () => (
+              {
+                value: signal<null>(null),
+                error: signal<null>(null),
+                isLoading: signal<null>(null),
+              }
+            )
+          }
+        }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EmployeeComponent);
     component = fixture.componentInstance;

@@ -74,6 +74,6 @@ export class OffboardComponent {
   }
 
   onCancel(): void {
-    void this._router.navigate(['employees', this.id()]);
+    void this._router.navigateByUrl(`/employees/${this.id()}`);
   }
 }

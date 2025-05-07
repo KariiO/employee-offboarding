@@ -5,8 +5,14 @@
       @let addressControls = form.controls.address.controls;
 
       <mat-form-field>
+        @let receiver = addressControls.receiver;
+
         <mat-label>Receiver</mat-label>
-        <input matInput type="text" [formControl]="addressControls.receiver">
+        <input matInput type="text" [formControl]="receiver">
+
+        @if (receiver.hasError('required')) {
+          <mat-error>Receiver is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
         @let email = form.controls.email;
@@ -21,28 +27,58 @@
         }
       </mat-form-field>
       <mat-form-field>
+        @let phone = form.controls.phone;
+
         <mat-label>Phone</mat-label>
-        <input matInput type="text" [formControl]="form.controls.phone">
+        <input matInput type="text" [formControl]="phone">
+        @if (phone.hasError('required')) {
+          <mat-error>Phone is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
+        @let streetLine1 = addressControls.streetLine1;
+
         <mat-label>Street line</mat-label>
-        <input matInput type="text" [formControl]="addressControls.streetLine1">
+        <input matInput type="text" [formControl]="streetLine1">
+        @if (streetLine1.hasError('required')) {
+          <mat-error>Street line <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field class="half-width">
+        @let city = addressControls.city;
+
         <mat-label>City</mat-label>
-        <input matInput type="text" [formControl]="addressControls.city">
+        <input matInput type="text" [formControl]="city">
+        @if (city.hasError('required')) {
+          <mat-error>City is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field class="half-width">
+        @let postalCode = addressControls.postalCode;
+
         <mat-label>Postal code</mat-label>
-        <input matInput type="text" [formControl]="addressControls.postalCode">
+        <input matInput type="text" [formControl]="postalCode">
+        @if (postalCode.hasError('required')) {
+          <mat-error>Postal code is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
+        @let country = addressControls.country;
+
         <mat-label>Country</mat-label>
-        <input matInput type="text" [formControl]="addressControls.country">
+        <input matInput type="text" [formControl]="country">
+        @if (country.hasError('required')) {
+          <mat-error>Country is <strong>required</strong></mat-error>
+        }
       </mat-form-field>
       <mat-form-field>
+        @let notes = form.controls.notes;
+
         <mat-label>Notes</mat-label>
-        <textarea matInput [formControl]="form.controls.notes"></textarea>
+        <textarea matInput [formControl]="notes"></textarea>
+        @if (notes.hasError('required')) {
+          <mat-error>Notes are <strong>required</strong></mat-error>
+        }
       </mat-form-field>
     </form>
   </mat-dialog-content>

@@ -30,19 +30,19 @@ export class OffboardFormFactory {
       })
     })
 
-    // TODO: Debug purposes - remove later
-    form.setValue({
-      "address": {
-        "streetLine1": "Kocmyrzowska 1",
-        "country": "Poland",
-        "postalCode": "13-231",
-        "receiver": "Stefan Batory",
-        "city": "Poznań"
-      },
-      "notes": "some text",
-      "phone": "+48123123123",
-      "email": "someemail@gmail.com"
-    })
+    // // TODO: Debug purposes - remove later
+    // form.setValue({
+    //   "address": {
+    //     "streetLine1": "Kocmyrzowska 1",
+    //     "country": "Poland",
+    //     "postalCode": "13-231",
+    //     "receiver": "Stefan Batory",
+    //     "city": "Poznań"
+    //   },
+    //   "notes": "some text",
+    //   "phone": "+48123123123",
+    //   "email": "someemail@gmail.com"
+    // })
 
     return form;
   }
