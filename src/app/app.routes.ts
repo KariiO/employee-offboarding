@@ -4,7 +4,7 @@ import {EmployeeComponent} from './employee/employee.component';
 import {OffboardComponent} from './offboard/offboard.component';
 
 export const routes: Routes = [
-  {path: 'employees', component: EmployeesComponent,},
+  {path: 'employees', component: EmployeesComponent, data: {reuseRoute: true}},
   {path: 'employees/:id', component: EmployeeComponent},
   {path: 'employees/:id/offboard', component: OffboardComponent},
   {path: '**', redirectTo: 'employees'}
