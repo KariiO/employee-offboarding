@@ -1,0 +1,7 @@
+main {
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  max-width: 1440px;
+  margin: 48px auto;
+}

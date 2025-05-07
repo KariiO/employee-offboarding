@@ -1,36 +1,30 @@
 @let isLoading = employeesResource.isLoading();
 @let error = employeesResource.error();
+@let _employees = employees();
 
 @if (isLoading) {
-  loading
+  <mat-spinner/>
 }
+
 @if (error) {
-  error
+  Snap! We were unable to fetch employees...please try again later.
 }
-@if (employees()) {
-  <input type="text" [(ngModel)]="searchTerm">
-  <table>
-    <thead>
-    <tr>
-      <th>Full Name</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Equipment</th>
-      <th>Status</th>
-      <th>Details</th>
-    </tr>
-    </thead>
-    <tbody>
-      @for (employee of employees(); track employee.id) {
-        <tr>
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.email }}</td>
-          <td>{{ employee.department }}</td>
-          <td>{{ employee.equipments | friendlyEquipments }}</td>
-          <td>{{ employee.status | titlecase }}</td>
-          <td><a [routerLink]="[employee.id]">Details</a></td>
-        </tr>
-      }
-    </tbody>
-  </table>
+
+@if (_employees) {
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Employees
+      </ng-template>
+
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="searchTerm" placeholder="Type in to search...">
+      </mat-form-field>
+
+      <app-employees-table [employees]="_employees"/>
+    </mat-tab>
+    <mat-tab disabled></mat-tab>
+    <mat-tab disabled></mat-tab>
+  </mat-tab-group>
 }

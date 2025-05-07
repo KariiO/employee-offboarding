@@ -1,17 +1,23 @@
 import {Component, computed, inject, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
 import {EquipmentService} from '../api/employee.service';
-import {TitleCasePipe} from '@angular/common';
-import {FriendlyEquipmentsPipe} from '../pipes/friendly-equipments.pipe';
 import {FormsModule} from '@angular/forms';
+import {MatTab, MatTabGroup, MatTabLabel} from '@angular/material/tabs';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {EmployeesTableComponent} from './employees-table/employees-table.component';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-employees',
   imports: [
-    RouterLink,
-    TitleCasePipe,
-    FriendlyEquipmentsPipe,
-    FormsModule
+    FormsModule,
+    MatTab,
+    MatTabGroup,
+    MatTabLabel,
+    MatInput,
+    MatLabel,
+    MatFormField,
+    EmployeesTableComponent,
+    MatProgressSpinner,
   ],
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css'

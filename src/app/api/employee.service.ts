@@ -11,7 +11,11 @@ export class EquipmentService {
 
   getAll(): ResourceRef<Employee[] | undefined> {
     return rxResource({
-      loader: () => this._httpClient.get<Employee[]>(`${this.BASE_URL}/employees`)
+      loader: () => {
+        // return throwError(() => new HttpErrorResponse({status: 400}))
+
+        return this._httpClient.get<Employee[]>(`${this.BASE_URL}/employees`).pipe(delay(1000));
+      }
     })
   }
 
