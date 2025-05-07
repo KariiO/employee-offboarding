@@ -9,8 +9,10 @@ export class EquipmentService {
   private readonly _httpClient = inject(HttpClient);
   private readonly BASE_URL = 'http://localhost:3000';
 
-  getAll(): Observable<Employee[]> {
-    return this._httpClient.get<Employee[]>(`${this.BASE_URL}/employees`);
+  getAll(): ResourceRef<Employee[] | undefined> {
+    return rxResource({
+      loader: () => this._httpClient.get<Employee[]>(`${this.BASE_URL}/employees`)
+    })
   }
 
   get(id: Signal<string | undefined>): ResourceRef<Employee | undefined> {
