@@ -26,6 +26,7 @@ export class EquipmentService {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   offboard(id: string | undefined, payload: OffboardPayload): Observable<unknown> {
     return of(null).pipe(delay(1000))
     // return this._httpClient.post<void>(`${this.BASE_URL}/employees/${id}/offboard`, payload);
